@@ -10,7 +10,7 @@
 ## Analysis of Go for Summary Statistics
 Coming from a Python/Pandas backgroud, the actual code was much easier in Python (less than 15 lines), and it was much quicker to write. The difference lies in the execution time with Go coming in around 20 microseconds, while the Python code was coming in around 2 seconds. 
 ![golang_results](golangresults.png)
-![python_results](pytonresults.png)
+![python_results](pythonresults.png)
 
 The performance was almost 100x faster with Golang. 
 ![time_conversion](timeconversion.png)

@@ -61,6 +61,14 @@ func main() {
 		}
 	}
 
+	// Find the minimum value
+	min := values[0]
+	for _, value := range values {
+		if value < min {
+			min = value
+		}
+	}
+
 	// Extract housing income values and calculate the average
 	totalinc := 0.0
 	countinc := 0
@@ -74,6 +82,32 @@ func main() {
 
 		totalinc += housingIncome
 		countinc++
+	}
+	// Extract values from the desired column (e.g., housing income)
+	columnIndexinc := 1
+	var valuesinc []float64
+	for _, record := range records {
+		// Convert the field to a float64
+		valueinc, err := strconv.ParseFloat(record[columnIndexinc], 64)
+		if err != nil {
+			log.Fatal(err)
+		}
+		valuesinc = append(valuesinc, valueinc)
+	}
+	// Find the maximum value
+	maxinc := valuesinc[0]
+	for _, valueinc := range valuesinc {
+		if valueinc > maxinc {
+			maxinc = valueinc
+		}
+	}
+
+	// Find the minimum value
+	mininc := valuesinc[0]
+	for _, valueinc := range valuesinc {
+		if valueinc < mininc {
+			mininc = valueinc
+		}
 	}
 	// Extract housing age values and calculate the average
 	totalage := 0.0
@@ -89,6 +123,32 @@ func main() {
 		totalage += housingAge
 		countage++
 	}
+	// Extract values from the desired column (e.g., housing age)
+	columnIndexage := 2
+	var valuesage []float64
+	for _, record := range records {
+		// Convert the field to a float64
+		valueage, err := strconv.ParseFloat(record[columnIndexage], 64)
+		if err != nil {
+			log.Fatal(err)
+		}
+		valuesage = append(valuesage, valueage)
+	}
+	// Find the maximum value
+	maxage := valuesage[0]
+	for _, valueage := range valuesage {
+		if valueage > maxage {
+			maxage = valueage
+		}
+	}
+	// Find the minimum value
+	minage := valuesage[0]
+	for _, valueage := range valuesage {
+		if valueage < minage {
+			minage = valueage
+		}
+	}
+
 	// Extract housing rooms values and calculate the average
 	totalrooms := 0.0
 	countrooms := 0
@@ -102,6 +162,31 @@ func main() {
 
 		totalrooms += housingRooms
 		countrooms++
+	}
+	// Extract values from the desired column (e.g., housing rooms)
+	columnIndexrooms := 3
+	var valuesrooms []float64
+	for _, record := range records {
+		// Convert the field to a float64
+		valuerooms, err := strconv.ParseFloat(record[columnIndexrooms], 64)
+		if err != nil {
+			log.Fatal(err)
+		}
+		valuesrooms = append(valuesrooms, valuerooms)
+	}
+	// Find the maximum value
+	maxrooms := valuesrooms[0]
+	for _, valuerooms := range valuesrooms {
+		if valuerooms > maxrooms {
+			maxrooms = valuerooms
+		}
+	}
+	// Find the minimum value
+	minrooms := valuesrooms[0]
+	for _, valuerooms := range valuesrooms {
+		if valuerooms < minrooms {
+			minrooms = valuerooms
+		}
 	}
 	// Extract housing bedrooms values and calculate the average
 	totalbdr := 0.0
@@ -117,6 +202,31 @@ func main() {
 		totalbdr += housingBdr
 		countbdr++
 	}
+	// Extract values from the desired column (e.g., housing bedrooms)
+	columnIndexbdr := 4
+	var valuesbdr []float64
+	for _, record := range records {
+		// Convert the field to a float64
+		valuebdr, err := strconv.ParseFloat(record[columnIndexbdr], 64)
+		if err != nil {
+			log.Fatal(err)
+		}
+		valuesbdr = append(valuesbdr, valuebdr)
+	}
+	// Find the maximum value
+	maxbdr := valuesbdr[0]
+	for _, valuebdr := range valuesbdr {
+		if valuebdr > maxbdr {
+			maxbdr = valuebdr
+		}
+	}
+	// Find the minimum value
+	minbdr := valuesbdr[0]
+	for _, valuebdr := range valuesbdr {
+		if valuebdr < minbdr {
+			minbdr = valuebdr
+		}
+	}
 	// Extract housing pop values and calculate the average
 	totalpop := 0.0
 	countpop := 0
@@ -130,6 +240,31 @@ func main() {
 
 		totalpop += housingPop
 		countpop++
+	}
+	// Extract values from the desired column (e.g., housing pop)
+	columnIndexpop := 5
+	var valuespop []float64
+	for _, record := range records {
+		// Convert the field to a float64
+		valuepop, err := strconv.ParseFloat(record[columnIndexpop], 64)
+		if err != nil {
+			log.Fatal(err)
+		}
+		valuespop = append(valuespop, valuepop)
+	}
+	// Find the maximum value
+	maxpop := valuespop[0]
+	for _, valuepop := range valuespop {
+		if valuepop > maxpop {
+			maxpop = valuepop
+		}
+	}
+	// Find the minimum value
+	minpop := valuespop[0]
+	for _, valuepop := range valuespop {
+		if valuepop < minpop {
+			minpop = valuepop
+		}
 	}
 	// Extract housing hh values and calculate the average
 	totalhh := 0.0
@@ -156,12 +291,23 @@ func main() {
 	averageHousingHh := totalhh / float64(counthh)
 
 	fmt.Printf("Average housing cost: $%.2f\n", averageHousingCost)
-	fmt.Printf("Maximum housing value:, $%.2f\n", max)
+	fmt.Printf("Maximum housing value: $%.2f\n", max)
+	fmt.Printf("Minimum housing value: $%.2f\n", min)
 	fmt.Printf("Average housing income: $%.2f\n", averageHousingIncome)
+	fmt.Printf("Maximum housing income: $%.2f\n", maxinc)
+	fmt.Printf("Minimum housing income: $%.2f\n", mininc)
 	fmt.Printf("Average housing age: %.2f\n", averageHousingAge)
+	fmt.Printf("Maximum housing age: %.2f\n", maxage)
+	fmt.Printf("Minimum housing age: %.2f\n", minage)
 	fmt.Printf("Average housing rooms: %.2f\n", averageHousingRooms)
+	fmt.Printf("Maximum housing rooms: %.2f\n", maxrooms)
+	fmt.Printf("Minimum housing rooms: %.2f\n", minrooms)
 	fmt.Printf("Average housing bedrooms: %.2f\n", averageHousingBdr)
+	fmt.Printf("Maximum housing bedrooms: %.2f\n", maxbdr)
+	fmt.Printf("Minimum housing bedrooms: %.2f\n", minbdr)
 	fmt.Printf("Average housing pop: %.2f\n", averageHousingPop)
+	fmt.Printf("Maximum housing pop: %.2f\n", maxpop)
+	fmt.Printf("Minimum housing pop: %.2f\n", minpop)
 	fmt.Printf("Average housing hh: %.2f\n", averageHousingHh)
 	fmt.Println("Time to run summary statistics: ", time.Since(startTime))
 }

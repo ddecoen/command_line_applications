@@ -1,35 +1,41 @@
 package main
 
 import (
-	"log"
+	"encoding/csv"
+	"fmt"
+	"io"
 	"os"
-
-	"github.com/kniren/gota/dataframe"
 )
 
 func main() {
-	N := 100
-	file, err := os.Create("housesOutputGo.txt")
+	// Open the CSV file
+	file, err := os.Open("../housesInput.csv")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Error:", err)
+		return
 	}
 	defer file.Close()
 
-	for i := 0; i < N; i++ {
-		housesFile, err := os.Open("housesInput.csv")
-		if err != nil {
-			log.Fatal(err)
+	// Create a new CSV reader
+	reader := csv.NewReader(file)
+
+	// Read the CSV records one by one
+	for {
+		// Read a record
+		record, err := reader.Read()
+
+		// Stop reading if we reach the end of the file
+		if err == io.EOF {
+			break
 		}
 
-		housesDF := dataframe.ReadCSV(housesFile)
-		desc := housesDF.Describe()
-
-		descString := desc.String()
-		_, err = file.WriteString(descString + "\n")
+		// Handle other errors
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println("Error:", err)
+			return
 		}
 
-		housesFile.Close()
+		// Process the record
+		fmt.Println(record)
 	}
 }

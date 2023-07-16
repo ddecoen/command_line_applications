@@ -280,6 +280,31 @@ func main() {
 		totalhh += housingHh
 		counthh++
 	}
+	// Extract values from the desired column (e.g., housing hh)
+	columnIndexhh := 5
+	var valueshh []float64
+	for _, record := range records {
+		// Convert the field to a float64
+		valuehh, err := strconv.ParseFloat(record[columnIndexhh], 64)
+		if err != nil {
+			log.Fatal(err)
+		}
+		valueshh = append(valueshh, valuehh)
+	}
+	// Find the maximum value
+	maxhh := valueshh[0]
+	for _, valuehh := range valueshh {
+		if valuehh > maxhh {
+			maxhh = valuehh
+		}
+	}
+	// Find the minimum value
+	minhh := valueshh[0]
+	for _, valuehh := range valueshh {
+		if valuehh < minhh {
+			minhh = valuehh
+		}
+	}
 
 	// Calculate the average housing metrics
 	averageHousingCost := total / float64(count)
@@ -290,6 +315,7 @@ func main() {
 	averageHousingPop := totalpop / float64(countpop)
 	averageHousingHh := totalhh / float64(counthh)
 
+	// Print out the detail to the command line
 	fmt.Printf("Average housing cost: $%.2f\n", averageHousingCost)
 	fmt.Printf("Maximum housing value: $%.2f\n", max)
 	fmt.Printf("Minimum housing value: $%.2f\n", min)
@@ -309,5 +335,7 @@ func main() {
 	fmt.Printf("Maximum housing pop: %.2f\n", maxpop)
 	fmt.Printf("Minimum housing pop: %.2f\n", minpop)
 	fmt.Printf("Average housing hh: %.2f\n", averageHousingHh)
+	fmt.Printf("Maximum housing hh: %.2f\n", maxhh)
+	fmt.Printf("Minimum housing hh: %.2f\n", minhh)
 	fmt.Println("Time to run summary statistics: ", time.Since(startTime))
 }
